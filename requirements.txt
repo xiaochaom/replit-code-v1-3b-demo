@@ -1,3 +1,4 @@
+einops
+sentencepiece
 torch
 transformers
-einops
