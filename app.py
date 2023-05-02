@@ -10,7 +10,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, set_seed
 
 REPO = "replit/replit-code-v1-3b"
 
-description = """# <h1 style="text-align: center; color: white;"><span style='color: #F26207;'> Code Completion with ReplitLM </h1>
+description = """# <h1 style="text-align: center; color: white;"><span style='color: #F26207;'> Code Completion with replit-code-v1-3b </h1>
 <span style="color: white; text-align: center;"> The replit-code-v1-3b model is a 2.7B parameters trained on 20 languages from the Stack Deduped v1.2 dataset.</span>"""
 
 
