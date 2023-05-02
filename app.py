@@ -141,4 +141,4 @@ with demo:
 
     event = run.click(code_generation, [code, max_new_tokens, temperature, seed, top_p, top_k, use_cache, repetition_penalty], code, api_name="predict")
 
-demo.launch()
+demo.queue(max_size=40).launch()
