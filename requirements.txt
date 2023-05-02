@@ -3,3 +3,4 @@ sentencepiece
 torch
 transformers
 accelerate
+https://gradio-builds.s3.amazonaws.com/83cdcf194ba26f132eb7047c19cbadf47bc48a1c/gradio-3.28.1-py3-none-any.whl
