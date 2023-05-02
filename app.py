@@ -25,9 +25,9 @@ UNK_TOKEN = "<|unk|>"
 tokenizer = AutoTokenizer.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True)
 
 if device == "cuda":
-    model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True).to(device, dtype=torch.bfloat16)
+    model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True, low_cpu_mem_usage=True).to(device, dtype=torch.bfloat16)
 else:
-    model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True, low_cpu_mem_usage=True)
 
 model.eval()
 
