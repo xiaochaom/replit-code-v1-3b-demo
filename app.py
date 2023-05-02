@@ -78,7 +78,7 @@ with demo:
     with gr.Row():
         input_col , settings_col  = gr.Column(scale=6), gr.Column(scale=6), 
         with input_col:
-            code = gr.Textbox(lines=22,label='Input', value="def all_odd_elements(sequence):\n    \"\"\"Returns every odd element of the sequence.\"\"\"")
+            code = gr.Code(lines=22,label='Input', value="def all_odd_elements(sequence):\n    \"\"\"Returns every odd element of the sequence.\"\"\"")
         with settings_col:
             with gr.Accordion("Generation Settings", open=True):
                 max_new_tokens= gr.Slider(
