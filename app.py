@@ -15,7 +15,7 @@ description = """# <h1 style="text-align: center; color: white;"><span style='co
 
 
 token = os.environ["HUB_TOKEN"]
-device= "cuda" if torch.cuda.is_available() else "cpu"
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
 PAD_TOKEN = "<|pad|>"
 EOS_TOKEN = "<|endoftext|>"
@@ -25,7 +25,7 @@ UNK_TOKEN = "<|unk|>"
 tokenizer = AutoTokenizer.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True)
 
 if device == "cuda":
-    model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True, attn_impl='triton').to(device, dtype=torch.bfloat16)
+    model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True).to(device, dtype=torch.bfloat16)
 else:
     model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True)
 
