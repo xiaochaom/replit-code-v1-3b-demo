@@ -87,7 +87,7 @@ with demo:
             with gr.Accordion("Generation Settings", open=True):
                 max_new_tokens= gr.Slider(
                     minimum=8,
-                    maximum=512,
+                    maximum=128,
                     step=1,
                     value=48,
                     label="Max Tokens",
