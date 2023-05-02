@@ -45,7 +45,7 @@ custom_css = """
 
 def post_processing(prompt, completion):
     completion = "<span style='color: #499cd5;'>" + completion + "</span>"
-    prompt = "<span style='color: white;'>" + prompt + "</span>"
+    prompt = "<span style='color: black;'>" + prompt + "</span>"
     code_html = f"<hr><br><pre style='font-size: 14px'><code>{prompt}{completion}</code></pre><br><hr>"
     return code_html
 
