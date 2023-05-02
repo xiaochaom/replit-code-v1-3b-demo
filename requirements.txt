@@ -2,3 +2,4 @@ einops
 sentencepiece
 torch
 transformers
+accelerate
