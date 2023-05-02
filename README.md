@@ -1,6 +1,6 @@
 ---
 title: Replit Code V1 3B Demo
-emoji: 👀
+emoji: 🧑‍💻
 colorFrom: gray
 colorTo: orange
 sdk: gradio
