@@ -1,8 +1,8 @@
 ---
-title: Replit Code V1 3b Demo
+title: Replit Code V1 3B Demo
 emoji: 👀
 colorFrom: gray
-colorTo: red
+colorTo: orange
 sdk: gradio
 sdk_version: 3.28.0
 app_file: app.py
