@@ -44,10 +44,11 @@ custom_css = """
 """
 
 def post_processing(prompt, completion):
-    completion = "<span style='color: #499cd5;'>" + completion + "</span>"
-    prompt = "<span style='color: black;'>" + prompt + "</span>"
-    code_html = f"<hr><br><pre style='font-size: 14px'><code>{prompt}{completion}</code></pre><br><hr>"
-    return code_html
+    return prompt + completion
+    # completion = "<span style='color: #499cd5;'>" + completion + "</span>"
+    # prompt = "<span style='color: black;'>" + prompt + "</span>"
+    # code_html = f"<hr><br><pre style='font-size: 14px'><code>{prompt}{completion}</code></pre><br><hr>"
+    # return code_html
 
     
 def code_generation(prompt, max_new_tokens, temperature=0.2, seed=42, top_p=0.9, top_k=None, use_cache=True, repetition_penalty=1.0):
@@ -130,11 +131,11 @@ with demo:
     with gr.Row():
         run = gr.Button(elem_id="orange-button")
 
-    with gr.Row():
-        # _, middle_col_row_2, _ = gr.Column(scale=1), gr.Column(scale=6), gr.Column(scale=1)
-        # with middle_col_row_2:
-        output = gr.HTML(label="Generated Code")
+    # with gr.Row():
+    #     # _, middle_col_row_2, _ = gr.Column(scale=1), gr.Column(scale=6), gr.Column(scale=1)
+    #     # with middle_col_row_2:
+    #     output = gr.HTML(label="Generated Code")
 
-    event = run.click(code_generation, [code, max_new_tokens, temperature, seed, top_p, top_k, use_cache, repetition_penalty], output, api_name="predict")
+    event = run.click(code_generation, [code, max_new_tokens, temperature, seed, top_p, top_k, use_cache, repetition_penalty], code, api_name="predict")
 
 demo.launch()
