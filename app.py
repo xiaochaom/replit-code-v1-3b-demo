@@ -15,7 +15,7 @@ description = """# <h1 style="text-align: center; color: white;"><span style='co
 
 
 token = os.environ["HUB_TOKEN"]
-device= torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device= "cuda" if torch.cuda.is_available() else "cpu"
 
 PAD_TOKEN = "<|pad|>"
 EOS_TOKEN = "<|endoftext|>"
@@ -24,9 +24,12 @@ UNK_TOKEN = "<|unk|>"
 
 tokenizer = AutoTokenizer.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True)
 
-model = AutoModelForCausalLM.from_pretrained(REPO, trust_remote_code=True, use_auth_token=token)#.to(device)
-model.eval()
+if device == "cuda":
+    model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True, attn_impl='triton').to(device, dtype=torch.bfloat16)
+else:
+    model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True)
 
+model.eval()
 
 
 custom_css = """
@@ -49,7 +52,7 @@ def post_processing(prompt, completion):
     
 def code_generation(prompt, max_new_tokens, temperature=0.2, seed=42, top_p=0.9, top_k=None, use_cache=True, repetition_penalty=1.0):
 
-    x = tokenizer.encode(prompt, return_tensors="pt")
+    x = tokenizer.encode(prompt, return_tensors="pt").to(device)
     set_seed(seed)
     y = model.generate(x, 
                        max_new_tokens=max_new_tokens, 
@@ -133,6 +136,5 @@ with demo:
         output = gr.HTML(label="Generated Code")
 
     event = run.click(code_generation, [code, max_new_tokens, temperature, seed, top_p, top_k, use_cache, repetition_penalty], output, api_name="predict")
-    # gr.HTML(label="Contact", value="<img src='https://huggingface.co/datasets/bigcode/admin/resolve/main/bigcode_contact.png' alt='contact' style='display: block; margin: auto; max-width: 800px;'>")
 
 demo.launch()
