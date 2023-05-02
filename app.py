@@ -41,6 +41,9 @@ custom_css = """
     background: #F26207 !important;
     color: white;
 }
+.cm-gutters{
+    border: none !important;
+}
 """
 
 def post_processing(prompt, completion):
