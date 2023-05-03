@@ -101,7 +101,7 @@ with demo:
                 )
                 repetition_penalty = gr.Slider(
                     minimum=1.0,
-                    maximum=2.0,
+                    maximum=1.9,
                     step=0.1,
                     value=1.0,
                     label="Repetition Penalty. 1.0 means no penalty.",
