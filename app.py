@@ -11,7 +11,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, set_seed
 REPO = "replit/replit-code-v1-3b"
 
 description = """# <h1 style="text-align: center; color: white;"><span style='color: #F26207;'> Code Completion with replit-code-v1-3b </h1>
-<span style="color: white; text-align: center;"> replit-code-v1-3b model is a 2.7B LLM trained on 20 languages from the Stack Dedup v1.2 dataset. Use this demo to repeatedly get completions while writing code in the input box.</span>"""
+<span style="color: white; text-align: center;"> replit-code-v1-3b model is a 2.7B LLM trained on 20 languages from the Stack Dedup v1.2 dataset. You can click the button several times to keep completing your code.</span>"""
 
 
 token = os.environ["HUB_TOKEN"]
