@@ -11,7 +11,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, set_seed
 REPO = "replit/replit-code-v1-3b"
 
 description = """# <h1 style="text-align: center; color: white;"><span style='color: #F26207;'> Code Completion with replit-code-v1-3b </h1>
-<span style="color: white; text-align: center;"> The replit-code-v1-3b model is a 2.7B parameters trained on 20 languages from the Stack Deduped v1.2 dataset.</span>"""
+<span style="color: white; text-align: center;"> replit-code-v1-3b model is a 2.7B LLM trained on 20 languages from the Stack Dedup v1.2 dataset.</span>"""
 
 
 token = os.environ["HUB_TOKEN"]
@@ -82,7 +82,7 @@ with demo:
     with gr.Row():
         input_col , settings_col  = gr.Column(scale=6), gr.Column(scale=6), 
         with input_col:
-            code = gr.Code(lines=22,label='Input', value="def all_odd_elements(sequence):\n    \"\"\"Returns every odd element of the sequence.\"\"\"")
+            code = gr.Code(lines=22,label='Input', value="def sieve_eratosthenes(n):")
         with settings_col:
             with gr.Accordion("Generation Settings", open=True):
                 max_new_tokens= gr.Slider(
