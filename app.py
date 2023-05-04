@@ -20,9 +20,11 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 PAD_TOKEN = "<|pad|>"
 EOS_TOKEN = "<|endoftext|>"
 UNK_TOKEN = "<|unk|>"
+MAX_INPUT_TOKENS = 1024 # max tokens from context
 
 
 tokenizer = AutoTokenizer.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True)
+tokenizer.truncation_side = "left" # ensures if truncate, then keep the last N tokens of the prompt going L -> R
 
 if device == "cuda":
     model = AutoModelForCausalLM.from_pretrained(REPO, use_auth_token=token, trust_remote_code=True, low_cpu_mem_usage=True).to(device, dtype=torch.bfloat16)
@@ -56,7 +58,9 @@ def post_processing(prompt, completion):
     
 def code_generation(prompt, max_new_tokens, temperature=0.2, seed=42, top_p=0.9, top_k=None, use_cache=True, repetition_penalty=1.0):
 
-    x = tokenizer.encode(prompt, return_tensors="pt").to(device)
+    # truncates the prompt to MAX_INPUT_TOKENS if its too long
+    x = tokenizer.encode(prompt, return_tensors="pt", max_length=MAX_INPUT_TOKENS, truncation=True).to(device)
+    print("Prompt shape: ", x.shape) # just adding to see in the space logs in prod
     set_seed(seed)
     y = model.generate(x, 
                        max_new_tokens=max_new_tokens, 
